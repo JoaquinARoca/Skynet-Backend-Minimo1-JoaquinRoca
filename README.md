@@ -1,5 +1,13 @@
 # Prova API
 
+## Referencias IA Utilizadas
+ - ChatGPT
+
+
+## Comentarios
+Ha faltado Lista de empaginado,
+Buscador mediante GET http://localhost:9000/api/historiales/{id}
+
 ## Descripció
 Una API bàsica desenvolupada en Node.js amb TypeScript, utilitzant Express i Mongoose per a la gestió de dades en MongoDB. A més, s'inclou documentació amb Swagger.
 
