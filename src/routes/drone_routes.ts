@@ -30,12 +30,12 @@ const router = express.Router();
  *         name: page
  *         schema:
  *           type: integer
- *         description: Page number
+ *         description: Número de página
  *       - in: query
  *         name: limit
  *         schema:
  *           type: integer
- *         description: Number of drones per page
+ *         description: Número de drones por página
  *     responses:
  *       200:
  *         description: Lista de drones
@@ -75,7 +75,6 @@ router.get('/drones/:id', getDroneByIdHandler);
  *           schema:
  *             type: object
  *             required:
- *               - id
  *               - sellerId
  *               - name
  *               - model
@@ -87,11 +86,9 @@ router.get('/drones/:id', getDroneByIdHandler);
  *               - contact
  *               - category
  *             properties:
- *               id:
- *                 type: string
  *               sellerId:
  *                 type: string
- *                 description: ObjectId del usuario vendedor
+ *                 description: ID del usuario vendedor
  *               name:
  *                 type: string
  *               model:
@@ -126,9 +123,9 @@ router.post('/drones', createDroneHandler);
 
 /**
  * @swagger
- * /api/drones/{id}:
+ * /api/drones/{id}/{idUser}:
  *   put:
- *     summary: Actualizar un dron
+ *     summary: Actualizar un dron y registrar la modificación en el historial
  *     tags: [Drones]
  *     parameters:
  *       - in: path
@@ -136,7 +133,13 @@ router.post('/drones', createDroneHandler);
  *         required: true
  *         schema:
  *           type: string
+ *       - in: path
+ *         name: idUser
+ *         required: true
+ *         schema:
+ *           type: string
  *     requestBody:
+ *       required: true
  *       content:
  *         application/json:
  *           schema:
@@ -154,7 +157,7 @@ router.post('/drones', createDroneHandler);
  *       404:
  *         description: Dron no encontrado
  */
-router.put('/drones/:id', updateDroneHandler);
+router.put('/drones/:id/:idUser', updateDroneHandler);
 
 /**
  * @swagger

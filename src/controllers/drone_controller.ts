@@ -63,28 +63,12 @@ export const getDroneByIdHandler = async (req: Request, res: Response) => {
 
 // Actualizar un dron
 export const updateDroneHandler = async (req: Request, res: Response) => {
-    try {
-        const { id } = req.params;
-        let drone = null;
+    const { id, idUser } = req.params;
 
-        if (mongoose.Types.ObjectId.isValid(id)) {
-            drone = await getDroneById(id);
-        }
+    if (!idUser) return res.status(400).json({ message: "userId es obligatorio" });
 
-        if (!drone) {
-            drone = await Drone.findOne({ id });
-        }
-
-        if (!drone) {
-            return res.status(404).json({ message: 'Dron no encontrado' });
-        }
-
-        const updatedDrone = await updateDrone(drone._id.toString(), req.body);
-
-        res.status(200).json(updatedDrone);
-    } catch (error: any) {
-        res.status(500).json({ message: error.message || "Error al actualizar el dron" });
-    }
+    const updatedDrone = await updateDrone(id, String(idUser), req.body);
+    updatedDrone ? res.json(updatedDrone) : res.status(404).json({ message: "Dron no encontrado" });
 };
 
 

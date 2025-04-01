@@ -6,6 +6,7 @@ import forumRoutes from './routes/forum_routes.js'; // Nota el .js al final
 import droneRoutes from './routes/drone_routes.js'; // Nota el .js al final
 import gameRoutes from './routes/game_routes.js';
 //import messageRoutes from './routes/message_routes.js'
+import historialRoutes from './routes/historial_routes.js'
 import { corsHandler } from './middleware/corsHandler.js';
 import { loggingHandler } from './middleware/loggingHandler.js';
 import { routeNotFound } from './middleware/routeNotFound.js';
@@ -46,17 +47,21 @@ const swaggerOptions = {
               name: 'Main',
               description: 'Rutas principales de la API',
             },
-            { 
-                name: 'Orders',
-                 description: 'Gestión de pedidos' ,
-            },
-            { 
-                name: 'Payments', 
-                description: 'Procesamiento de pagos' ,
-            },
-            { 
-                name: 'Messages', 
-                description: 'Mensajería entre usuarios' ,
+            // { 
+            //     name: 'Orders',
+            //      description: 'Gestión de pedidos' ,
+            // },
+            // { 
+            //     name: 'Payments', 
+            //     description: 'Procesamiento de pagos' ,
+            // },
+            // { 
+            //     name: 'Messages', 
+            //     description: 'Mensajería entre usuarios' ,
+            // },
+            {
+                name:'Historial',
+                description:'Historial de modificación de drones'
             },
             { 
                 name: 'Juegos', 
@@ -85,6 +90,7 @@ app.use('/api', userRoutes);
 //app.use('/api',messageRoutes);
 app.use('/api', forumRoutes);
 app.use('/api', droneRoutes);
+app.use('/api', historialRoutes);
 app.use('/api', gameRoutes);
 
 // Rutes de prova

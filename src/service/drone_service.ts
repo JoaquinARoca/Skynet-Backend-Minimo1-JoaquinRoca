@@ -1,5 +1,7 @@
 import Drone, { IDrone } from '../models/drone_models.js';
 import User from '../models/user_models.js';
+import Historial from '../models/historial_model.js';
+import { createHistorial } from './historial_service.js';
 
 // Permite que los usuarios publiquen drones en venta o alquiler
 export const createDrone = async (droneData: IDrone) => {
@@ -20,8 +22,12 @@ export const getDroneById = async (id: string) => {
 };
 
 // Permite que los vendedores editen su publicación
-export const updateDrone = async (id: string, updateData: Partial<IDrone>) => {
-    return await Drone.findByIdAndUpdate(id, updateData, { new: true });
+export const updateDrone = async (droneId: string, userId: string, updateData: Partial<IDrone>) => {
+    const drone = await Drone.findByIdAndUpdate(droneId, updateData, { new: true });
+    if (drone) {
+        await new Historial({ userId, droneId }).save(); // Guarda en historial la modificación
+    }
+    return drone;
 };
 
 // Permite que los vendedores eliminen su publicación
