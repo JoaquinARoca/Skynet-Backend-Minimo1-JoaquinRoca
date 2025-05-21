@@ -35,6 +35,52 @@ const router = express.Router();
  *               droneId:
  *                 type: string
  *                 description: ID del dron
+ *               droneSaved:
+ *                 type: object
+ *                 description: Estado del dron en el momento del historial
+ *                 properties:
+ *                   id:
+ *                     type: string
+ *                   name:
+ *                     type: string
+ *                   model:
+ *                     type: string
+ *                   price:
+ *                     type: number
+ *                   description:
+ *                     type: string
+ *                   images:
+ *                     type: array
+ *                     items:
+ *                       type: string
+ *                   type:
+ *                     type: string
+ *                     enum: [venta, alquiler]
+ *                   condition:
+ *                     type: string
+ *                     enum: [nuevo, usado]
+ *                   location:
+ *                     type: string
+ *                   contact:
+ *                     type: string
+ *                   category:
+ *                     type: string
+ *                   sellerId:
+ *                     type: string
+ *                   createdAt:
+ *                     type: string
+ *                     format: date-time
+ *                   ratings:
+ *                     type: array
+ *                     items:
+ *                       type: object
+ *                       properties:
+ *                         userId:
+ *                           type: string
+ *                         rating:
+ *                           type: number
+ *                         comment:
+ *                           type: string
  *     responses:
  *       201:
  *         description: Historial creado exitosamente
@@ -45,7 +91,7 @@ router.post("/historiales", createHistorialHandler);
 
 /**
  * @swagger
- * /api/historiales/historiales:
+ * /api/historiales:
  *   get:
  *     summary: Obtener todos los historiales
  *     tags: [Historiales]
@@ -53,7 +99,7 @@ router.post("/historiales", createHistorialHandler);
  *       200:
  *         description: Lista de historiales obtenida
  */
-router.get('/historiales/historiales', getHistorialesHandler);
+router.get('/historiales', getHistorialesHandler);
 
 
 /**

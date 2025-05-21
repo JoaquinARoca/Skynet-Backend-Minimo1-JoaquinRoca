@@ -25,7 +25,11 @@ export const getDroneById = async (id: string) => {
 export const updateDrone = async (droneId: string, userId: string, updateData: Partial<IDrone>) => {
     const drone = await Drone.findByIdAndUpdate(droneId, updateData, { new: true });
     if (drone) {
-        await new Historial({ userId, droneId }).save(); // Guarda en historial la modificación
+        const historial = new Historial(
+            {userId:userId,
+             droneId: droneId, 
+             droneSaved:{drone}}); // Guarda en historial la modificación
+        await historial.save()
     }
     return drone;
 };

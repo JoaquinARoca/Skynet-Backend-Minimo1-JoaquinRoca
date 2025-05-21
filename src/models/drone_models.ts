@@ -43,7 +43,7 @@ export interface IDrone {
     category: string;
     sellerId: string;
     createdAt?: Date;
-    ratings: IRating[];
+    ratings?: IRating[];
 }
 
 

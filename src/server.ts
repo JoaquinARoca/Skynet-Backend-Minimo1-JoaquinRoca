@@ -60,7 +60,7 @@ const swaggerOptions = {
             //     description: 'Mensajería entre usuarios' ,
             // },
             {
-                name:'Historial',
+                name:'Historiales',
                 description:'Historial de modificación de drones'
             },
             { 
@@ -101,7 +101,7 @@ app.get('/', (req, res) => {
 // Conexión a MongoDB
 //mongoose;
 mongoose
-    .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/Skynet-Database')
+    .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/backEndReact', )
     .then(() => console.log('Connected to DB'))
     .catch((error) => console.error('DB Connection Error:', error));
 

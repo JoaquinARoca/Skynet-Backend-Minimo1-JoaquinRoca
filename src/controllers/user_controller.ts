@@ -70,7 +70,7 @@ export const logInHandler = async (req: Request, res: Response) => {
         if (!data) {
             return res.status(404).json({ message: 'Usuario no encontrado o eliminado' });
         }
-        res.json({ message: 'Sesión iniciada con éxito' });
+        res.json(data);
     } catch (error: any) {
         if (error.message === 'Contraseña incorrecta') {
             return res.status(401).json({ message: error.message });

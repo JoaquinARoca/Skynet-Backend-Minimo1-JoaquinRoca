@@ -5,13 +5,14 @@
     "main": " src/server.ts",
     "type": "module",
     "scripts": {
+        "build": "tsc",
         "start": "tsc && cd .\\build && node server.js"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
         "bcryptjs": "^3.0.2",
-        "dotenv": "^16.4.7",
+        "dotenv": "^16.5.0",
         "express-rate-limit": "^7.5.0",
         "jsonwebtoken": "^9.0.2",
         "mongodb": "^6.13.0",
